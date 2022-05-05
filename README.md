@@ -9,7 +9,7 @@ Users - has_many Tasks
   User Name (String)
   Timestamps
 
-Tasks - belongs_to Categories
+Tasks - belongs_to Categories and users
   Task ID (integer)
   Task Name (string)
   Category ID (integer, foreign key)
