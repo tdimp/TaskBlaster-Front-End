@@ -1,3 +1,22 @@
+## Phase 3 Project
+
+Task lister app / todo app
+
+## MVP
+
+  1. Homepage
+  2. Navigation
+  3. List Tasks Page
+  4. New Task Form Page
+  5. Edit Task
+  6. Delete Task
+
+## Stretch Goals
+
+  1. Color code tasks based on category (e.g. Work, Personal, Home, etc.)
+  2. Add a deadline function to allow for alerts (use timestamps)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
