@@ -2,6 +2,27 @@
 
 Task lister app / todo app
 
+## Database Schema
+
+Users - has_many Tasks
+  User ID (integer)
+  User Name (String)
+  Timestamps
+
+Tasks - belongs_to Categories
+  Task ID (integer)
+  Task Name (string)
+  Category ID (integer, foreign key)
+  User ID (integer, foreign key)
+  Deadline (datetime) # https://api.rubyonrails.org/classes/DateTime.html
+  Timestamps
+
+Categories - has_many Tasks
+  Category ID (integer)
+  Category Name (string)
+  Category Priority (string)
+  Timestamps
+
 ## MVP
 
   1. Homepage
@@ -13,8 +34,10 @@ Task lister app / todo app
 
 ## Stretch Goals
 
-  1. Color code tasks based on category (e.g. Work, Personal, Home, etc.)
-  2. Add a deadline function to allow for alerts (use timestamps)
+  1. Color code tasks based on category (e.g. Work, Personal, Home, etc.) Bootstrap, Tailwind, Material UI
+  2. Add a deadline function to allow for alerts (use time to create a countdown)
+  3. Add "priority level" that perhaps increases the frequency of alerts as deadlines approach 
+  4. Try to integrate this task app with Google/local calendar
 
 
 # Getting Started with Create React App
