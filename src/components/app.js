@@ -1,10 +1,14 @@
 import React from "react";
+import ReactDom from 'react-dom';
+import Button from '@mui/material/Button';
+import NavBar from "./navbar";
 
 const App = () => {
   return (
     <div>
-      <h1>Hello World</h1>
+      < Button variant="contained">Hello World</Button>
     </div>
+      
   );
 }
 
