@@ -7,7 +7,6 @@ import NewTaskForm from "./newtaskform";
 export default function App() {
   return (
     <div>
-      <Button variant="contained">Hello, World</Button>
       <NewTaskForm></NewTaskForm>
     </div>
       
