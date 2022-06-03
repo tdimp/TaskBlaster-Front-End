@@ -16,7 +16,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const theme = createTheme();
 const url = "http://localhost:9292"
 
-export default function Login() {
+export default function NewUserForm() {
 
   useEffect(() => {
     fetch(`${url}/users`)
@@ -27,24 +27,27 @@ export default function Login() {
   const [users, setUsers] = useState([])
   const [currentUser, setCurrentUser] = useState("")
 
-  const checkUsers = (name) => {
-    return users.find((el) => {
-      //console.log(el.name)
-      return el.name === name;
-    });
-  }
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    const name = data.get('name');
-    if (checkUsers(name)){
-      setCurrentUser(name)
-      console.log(currentUser)
-    } else {
-      alert("That user does not exist!")
-    }
-    
+
+    let newUser = { user: {
+      name: currentUser,
+    }};
+
+    fetch(`${url}/users`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newUser),
+    })
+      .then((r) => r.json())
+      .then((user) => {
+        if (user.errors) {
+          return alert(user.errors)
+        }
+        console.log(user)
+      });
     
   };
 
@@ -61,7 +64,7 @@ export default function Login() {
           }}
         >
           <Typography component="h1" variant="h5">
-            Sign In
+            New User
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
@@ -71,6 +74,7 @@ export default function Login() {
               id="name"
               label="Your Name"
               name="name"
+              onChange={(e) => setCurrentUser(e.target.value)}
             />
           <Button
             type="submit"
@@ -78,7 +82,7 @@ export default function Login() {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Sign In
+            Submit
           </Button>
           </Box>
         </Box>

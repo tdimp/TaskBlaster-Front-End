@@ -3,13 +3,13 @@ import ReactDom from 'react-dom';
 import Button from '@mui/material/Button';
 import NavBar from "./navbar";
 import NewTaskForm from "./newtaskform";
-import Login from './login'
+import NewUserForm from './newuserform';
 
 export default function App() {
   return (
     <div>
       <NewTaskForm></NewTaskForm>
-      <Login></Login>
+      <NewUserForm></NewUserForm>
     </div>
       
   );
