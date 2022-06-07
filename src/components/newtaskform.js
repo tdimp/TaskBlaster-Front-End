@@ -92,6 +92,7 @@ export default function NewTaskForm() {
           </InputLabel>
           <NativeSelect
             onChange={(e) => setTaskUser(e.target.value)}
+            defaultValue={1}
           >
             {users.map((user) => 
             <option key={user.id} value={user.id}>{user.name}</option>)}
