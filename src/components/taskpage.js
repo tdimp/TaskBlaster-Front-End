@@ -13,10 +13,17 @@ export default function TaskPage() {
   }, []);
 
   const [tasks, setTasks] = useState([]);
-
+  
   return (
-    <TaskCard>
-      <h1>Hello World</h1>
-    </TaskCard>
+    <ul>
+      {tasks.map((task) => (
+        <TaskCard
+          key={task.id}
+          task={task}
+          isComplete={task.is_complete}
+        />
+      ))}
+      
+    </ul>
   )
 }
