@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 export default function TaskCard({
   task: {
@@ -63,8 +64,13 @@ export default function TaskCard({
           margin: 10
         }}
         >
-        <Button variant="contained" >Edit Task</Button>
-        <Button variant="contained" onClick={handleOpenClick}>Delete</Button>
+        <Box sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+        }}>
+          <Button variant="contained" >Edit Task</Button>
+          <Button variant="contained" onClick={handleOpenClick}><DeleteForeverIcon/></Button>
+        </Box>
         <Dialog onClose={handleClose} open={open}>
           <DialogTitle>Delete Task?</DialogTitle>
           <DialogActions>

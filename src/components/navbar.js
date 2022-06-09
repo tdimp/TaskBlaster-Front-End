@@ -1,22 +1,31 @@
 import * as React from 'react';
 import { NavLink } from 'react-router-dom';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 
 function NavBar() {
+
   return (
-    <div className='navbar'>
-      <NavLink
-        to='/'
-      > Home </NavLink>
-      <NavLink
-        to="/tasks"
-      > Tasks </NavLink>
-      <NavLink
-        to="/newtaskform"
-      > New Task Form </NavLink>
-      <NavLink
-        to="/newuserform"
-      > New User Form </NavLink>
-    </div>
+    <Box sx={{
+      backgroundColor: 'primary',
+      padding: 2.5,
+      marginTop: 3,
+      display: 'flex',
+      justifyContent: 'space-evenly',
+    }}>
+      <Button
+        href='/'
+      > Home </Button>
+      <Button
+        href="/tasks"
+      > Tasks </Button>
+      <Button
+        href="/newtaskform"
+      > New Task </Button>
+      <Button
+        href="/newuserform"
+      > New User </Button>
+    </Box>
   )
 }
 

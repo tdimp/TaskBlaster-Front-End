@@ -52,7 +52,7 @@ export default function NewTaskForm() {
         console.log(newTask)
       })
   }
-  
+
   return (
     <Container component="main" maxWidth="xs">
       <Box
@@ -127,6 +127,7 @@ export default function NewTaskForm() {
         </FormControl>
 
         <Button type="submit" variant="contained">Submit</Button>
+        <Button href="/tasks">Go to Tasks Page</Button>
       </Box>
     </Container>
   )

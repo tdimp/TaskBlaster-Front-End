@@ -60,11 +60,10 @@ export default function NewUserForm() {
             marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
-            aligntems: 'center',
           }}
         >
           <Typography component="h1" variant="h5">
-            New User
+            Add New User
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
