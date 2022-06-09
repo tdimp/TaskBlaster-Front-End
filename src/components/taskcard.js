@@ -70,7 +70,7 @@ export default function TaskCard({
           <DialogTitle>Delete Task?</DialogTitle>
           <DialogActions>
             <Button onClick={handleClose}>No</Button>
-            <Button onClick={handleDeleteClick}>Yes</Button>
+            <Button variant="contained" onClick={handleDeleteClick}>Yes</Button>
           </DialogActions>
         </Dialog>
         <h1>{name}</h1>
