@@ -11,6 +11,7 @@ export default function TaskCard({
     is_complete,
     deadline
   },
+  handleDelete
 }) {
 
   const [isComplete, setIsComplete] = useState(is_complete)
@@ -35,11 +36,10 @@ export default function TaskCard({
   }
 
   function handleDeleteClick() {
-    console.log("Click")
     fetch(`${url}/tasks/${id}`, {
       method: "DELETE",
     });
-    console.log("delete click")
+    handleDelete(id)
   }
   
   return (

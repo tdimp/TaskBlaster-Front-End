@@ -13,6 +13,11 @@ export default function TaskPage() {
   }, []);
 
   const [tasks, setTasks] = useState([]);
+
+  function handleDelete(id) {
+    const filteredTasks = tasks.filter((task) => task.id !== id)
+    setTasks(filteredTasks)
+  }
   
   return (
     <ul>
@@ -21,6 +26,7 @@ export default function TaskPage() {
           key={task.id}
           task={task}
           isComplete={task.is_complete}
+          handleDelete={handleDelete}
         />
       ))}
       
