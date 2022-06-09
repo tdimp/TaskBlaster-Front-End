@@ -52,6 +52,7 @@ export default function NewTaskForm() {
         console.log(newTask)
       })
   }
+  
   return (
     <Container component="main" maxWidth="xs">
       <Box

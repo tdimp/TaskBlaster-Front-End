@@ -23,7 +23,6 @@ export default function TaskCard({
   const url = 'http://localhost:9292'
 
   function handleCompleteToggle() {
-    console.log("Clicked!")
     fetch(`${url}/tasks/${id}`, {
       method: "PATCH",
       headers: {
@@ -64,7 +63,7 @@ export default function TaskCard({
           margin: 10
         }}
         >
-        <Button variant="contained">Edit Task</Button>
+        <Button variant="contained" >Edit Task</Button>
         <Button variant="contained" onClick={handleOpenClick}>Delete</Button>
         <Dialog onClose={handleClose} open={open}>
           <DialogTitle>Delete Task?</DialogTitle>
