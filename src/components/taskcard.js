@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogTitle from '@mui/material/DialogTitle';
 
 export default function TaskCard({
   task: {
@@ -15,6 +18,7 @@ export default function TaskCard({
 }) {
 
   const [isComplete, setIsComplete] = useState(is_complete)
+  const [open, setOpen] = useState(false)
 
   const url = 'http://localhost:9292'
 
@@ -27,12 +31,20 @@ export default function TaskCard({
       },
       body: JSON.stringify({
         task: {
-          is_complete: !isComplete
+          is_complete: !is_complete
         }
       }),
     })
       .then((r) => r.json())
-      .then((task) => setIsComplete(task))
+      .then(setIsComplete)
+  }
+
+  function handleOpenClick() {
+    setOpen(true);
+  }
+
+  function handleClose() {
+    setOpen(false);
   }
 
   function handleDeleteClick() {
@@ -53,7 +65,14 @@ export default function TaskCard({
         }}
         >
         <Button variant="contained">Edit Task</Button>
-        <Button variant="contained" onClick={handleDeleteClick}>Delete</Button>
+        <Button variant="contained" onClick={handleOpenClick}>Delete</Button>
+        <Dialog onClose={handleClose} open={open}>
+          <DialogTitle>Delete Task?</DialogTitle>
+          <DialogActions>
+            <Button onClick={handleClose}>No</Button>
+            <Button onClick={handleDeleteClick}>Yes</Button>
+          </DialogActions>
+        </Dialog>
         <h1>{name}</h1>
         <h3>{description}</h3>
         <h3>{deadline}</h3>
