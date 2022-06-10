@@ -94,7 +94,6 @@ export default function TaskCard({
         </Dialog>
         <h1>{name}</h1>
         <h3>{description}</h3>
-        <h3>{deadline}</h3>
         <Button variant="contained" onClick={handleCompleteToggle}>{isComplete? "Mark Incomplete" : "Complete!"}</Button>
       </Box>
     </Container>
