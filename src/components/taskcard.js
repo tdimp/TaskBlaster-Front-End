@@ -6,6 +6,8 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import EditIcon from '@mui/icons-material/Edit';
+import EditTaskForm from './edittaskform';
 
 export default function TaskCard({
   task: {
@@ -20,6 +22,7 @@ export default function TaskCard({
 
   const [isComplete, setIsComplete] = useState(is_complete)
   const [open, setOpen] = useState(false)
+  const [editTask, setEditTask] = useState(null)
 
   const url = 'http://localhost:9292'
 
@@ -53,6 +56,22 @@ export default function TaskCard({
     });
     handleDelete(id)
   }
+
+  function setData(data) {
+    let { id, name, description, user_id, category_id, priority } = data;
+    localStorage.setItem('ID', id);
+    localStorage.setItem('Name', name)
+    localStorage.setItem('Description', description);
+    localStorage.setItem('User_ID', user_id);
+    localStorage.setItem('Category_ID', category_id);
+    localStorage.setItem('Priority', priority);
+  }
+
+  function handleEditClick() {
+    fetch(`${url}/tasks/${id}`)
+      .then((r) => r.json())
+      .then((data) => setData(data))
+  }
   
   return (
     <Container>
@@ -68,7 +87,7 @@ export default function TaskCard({
           display: 'flex',
           justifyContent: 'space-between',
         }}>
-          <Button variant="contained" >Edit Task</Button>
+          <Button variant="contained" href="/edittask" onClick={handleEditClick}><EditIcon /></Button>
           <Button variant="contained" onClick={handleOpenClick}><DeleteForeverIcon/></Button>
         </Box>
         <Dialog onClose={handleClose} open={open}>
