@@ -22,7 +22,6 @@ export default function TaskCard({
 
   const [isComplete, setIsComplete] = useState(is_complete)
   const [open, setOpen] = useState(false)
-  const [editTask, setEditTask] = useState(null)
 
   const url = 'http://localhost:9292'
 
@@ -58,6 +57,7 @@ export default function TaskCard({
   }
 
   function setData(data) {
+    localStorage.clear();
     let { id, name, description, user_id, category_id, priority } = data;
     localStorage.setItem('ID', id);
     localStorage.setItem('Name', name)
@@ -87,7 +87,7 @@ export default function TaskCard({
           display: 'flex',
           justifyContent: 'space-between',
         }}>
-          <Button variant="contained" onClick={handleEditClick} href="/edittask" ><EditIcon /></Button>
+          <Button variant="contained" onClick={handleEditClick} href="/edittask"><EditIcon /></Button>
           <Button variant="contained" onClick={handleOpenClick}><DeleteForeverIcon/></Button>
         </Box>
         <Dialog onClose={handleClose} open={open}>
