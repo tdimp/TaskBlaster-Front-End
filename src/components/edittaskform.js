@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button'
@@ -9,7 +10,8 @@ import Container from '@mui/material/Container';
 
 export default function EditTaskForm() {
 
-  const url = "http://localhost:9292"
+  const url = "http://localhost:9292";
+  let navigate = useNavigate();
 
   useEffect(() => {
     fetch(`${url}/users`)
@@ -33,7 +35,7 @@ export default function EditTaskForm() {
   const [taskDescription, setTaskDescription] = useState("");
   const [taskPriority, setTaskPriority] = useState("Low");
   const [taskUser, setTaskUser] = useState("");
-
+  
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
@@ -57,8 +59,10 @@ export default function EditTaskForm() {
         if (newTask.errors) {
           return alert(newTask.errors)
         }
-        console.log(newTask)
       })
+      .then(setTimeout(() => {
+        navigate('/tasks')
+      }, 500))
   }
 
   return (
@@ -101,7 +105,7 @@ export default function EditTaskForm() {
           </InputLabel>
           <NativeSelect
             onChange={(e) => setTaskUser(e.target.value)}
-            defaultValue={1}
+            value={taskUser}
           >
             {users.map((user) => 
             <option key={user.id} value={user.id}>{user.name}</option>)}
@@ -112,7 +116,7 @@ export default function EditTaskForm() {
             Category
           </InputLabel>
           <NativeSelect
-            defaultValue={1}
+            value={taskCategory}
             onChange={(e) => setTaskCategory(e.target.value)}
           >
             <option value={1}>Home</option>
@@ -125,7 +129,7 @@ export default function EditTaskForm() {
             Priority
           </InputLabel>
           <NativeSelect
-            defaultValue={1}
+            value={taskPriority}
             onChange={(e) => setTaskPriority(e.target.value)}
           >
             <option value={1}>Low</option>

@@ -15,7 +15,10 @@ export default function TaskCard({
     name,
     description,
     is_complete,
-    deadline
+    deadline,
+    user_id,
+    category_id,
+    priority
   },
   handleDelete
 }) {
@@ -56,21 +59,13 @@ export default function TaskCard({
     handleDelete(id)
   }
 
-  function setData(data) {
-    localStorage.clear();
-    let { id, name, description, user_id, category_id, priority } = data;
+  function setData(id, name, description, user_id, category_id, priority) {
     localStorage.setItem('ID', id);
     localStorage.setItem('Name', name)
     localStorage.setItem('Description', description);
     localStorage.setItem('User_ID', user_id);
     localStorage.setItem('Category_ID', category_id);
     localStorage.setItem('Priority', priority);
-  }
-
-  function handleEditClick() {
-    fetch(`${url}/tasks/${id}`)
-      .then((r) => r.json())
-      .then((data) => setData(data))
   }
   
   return (
@@ -87,7 +82,7 @@ export default function TaskCard({
           display: 'flex',
           justifyContent: 'space-between',
         }}>
-          <Button variant="contained" onClick={handleEditClick} href="/edittask"><EditIcon /></Button>
+          <Button variant="contained" onClick={() => (setData(id, name, description, user_id, category_id, priority))} href="/edittask"><EditIcon /></Button>
           <Button variant="contained" onClick={handleOpenClick}><DeleteForeverIcon/></Button>
         </Box>
         <Dialog onClose={handleClose} open={open}>
