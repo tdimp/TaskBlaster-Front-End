@@ -87,7 +87,7 @@ export default function TaskCard({
           display: 'flex',
           justifyContent: 'space-between',
         }}>
-          <Button variant="contained" href="/edittask" onClick={handleEditClick}><EditIcon /></Button>
+          <Button variant="contained" onClick={handleEditClick} href="/edittask" ><EditIcon /></Button>
           <Button variant="contained" onClick={handleOpenClick}><DeleteForeverIcon/></Button>
         </Box>
         <Dialog onClose={handleClose} open={open}>
