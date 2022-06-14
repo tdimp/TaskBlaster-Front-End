@@ -36,12 +36,12 @@ export default function TaskCard({
       },
       body: JSON.stringify({
         task: {
-          is_complete: !is_complete
+          is_complete: !isComplete
         }
       }),
     })
       .then((r) => r.json())
-      .then(setIsComplete)
+      .then((newComplete) => setIsComplete(newComplete.is_complete))
   }
 
   function handleOpenClick() {
