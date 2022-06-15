@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { useNavigate, useParams } from "react-router-dom";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button'
@@ -8,33 +8,19 @@ import FormControl from '@mui/material/FormControl';
 import NativeSelect from '@mui/material/NativeSelect';
 import Container from '@mui/material/Container';
 
-export default function EditTaskForm() {
+export default function EditTaskForm({ tasks, users, url }) {
 
-  const url = "http://localhost:9292";
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    fetch(`${url}/users`)
-      .then((r) => r.json())
-      .then(setUsers)
-  }, [])
+  const { id } = useParams()
 
-  useEffect(() => {
-    setID(localStorage.getItem('ID'))
-    setTaskName(localStorage.getItem('Name'))
-    setTaskDescription(localStorage.getItem('Description'))
-    setTaskUser(localStorage.getItem('User_ID'))
-    setTaskCategory(localStorage.getItem('Category_ID'))
-    setTaskPriority(localStorage.getItem('Priority'))
-  }, []);
+  const task = tasks.find(t => t.id == id)
 
-  const [users, setUsers] = useState([]);
-  const [id, setID] = useState(null);
-  const [taskCategory, setTaskCategory] = useState("1");
-  const [taskName, setTaskName] = useState("");
-  const [taskDescription, setTaskDescription] = useState("");
-  const [taskPriority, setTaskPriority] = useState("Low");
-  const [taskUser, setTaskUser] = useState("");
+  const [taskCategory, setTaskCategory] = useState(task.category_id);
+  const [taskName, setTaskName] = useState(task.name);
+  const [taskDescription, setTaskDescription] = useState(task.description);
+  const [taskPriority, setTaskPriority] = useState(task.priority);
+  const [taskUser, setTaskUser] = useState(task.user_id);
   
   const handleFormSubmit = (e) => {
     e.preventDefault();

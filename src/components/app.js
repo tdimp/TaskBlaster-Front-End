@@ -26,8 +26,6 @@ export default function App() {
       .then((data) => setTasks(data))
   }, []);
 
-
-  // look up how to pass props to Route
   // advanced hooks - Phase 2 - React Context
 
   return (
@@ -36,10 +34,10 @@ export default function App() {
         <NavBar />
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route exact path="/newtaskform" element={<NewTaskForm users={users} /> } />
-          <Route exact path="/newuserform" element={<NewUserForm users={users} />} />
+          <Route exact path="/tasks/new" element={<NewTaskForm users={users} /> } />
+          <Route exact path="/users/new" element={<NewUserForm users={users} />} />
           <Route exact path="/tasks" element={<TaskPage tasks={tasks} />}  />
-          <Route path="/tasks/:id/edit" element={<EditTaskForm />} />
+          <Route path="/tasks/:id/edit" element={<EditTaskForm tasks={tasks} users={users} url={url} />} />
         </Routes>
       </BrowserRouter>
     </div>
