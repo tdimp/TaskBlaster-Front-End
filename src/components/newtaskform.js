@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button'
@@ -7,15 +7,8 @@ import FormControl from '@mui/material/FormControl';
 import NativeSelect from '@mui/material/NativeSelect';
 import Container from '@mui/material/Container';
 
-export default function NewTaskForm() {
+export default function NewTaskForm({ users }) {
 
-  useEffect(() => {
-    fetch(`${url}/users`)
-      .then((r) => r.json())
-      .then(setUsers)
-  }, [])
-
-  const [users, setUsers] = useState([]);
   const [taskCategory, setTaskCategory] = useState("1");
   const [taskName, setTaskName] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
@@ -52,7 +45,7 @@ export default function NewTaskForm() {
         console.log(newTask)
       })
   }
-
+  console.log(users)
   return (
     <Container component="main" maxWidth="xs">
       <Box

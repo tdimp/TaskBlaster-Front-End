@@ -8,6 +8,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import EditIcon from '@mui/icons-material/Edit';
 import EditTaskForm from './edittaskform';
+import { Link } from 'react-router-dom'
 
 export default function TaskCard({
   task: {
@@ -58,15 +59,6 @@ export default function TaskCard({
     });
     handleDelete(id)
   }
-
-  function setData(id, name, description, user_id, category_id, priority) {
-    localStorage.setItem('ID', id);
-    localStorage.setItem('Name', name)
-    localStorage.setItem('Description', description);
-    localStorage.setItem('User_ID', user_id);
-    localStorage.setItem('Category_ID', category_id);
-    localStorage.setItem('Priority', priority);
-  }
   
   return (
     <Container>
@@ -82,8 +74,7 @@ export default function TaskCard({
           display: 'flex',
           justifyContent: 'space-between',
         }}>
-          <Link to={`/tasks/${id}/edit`}><Button><EditIcon /></Button></Link>
-          <Button variant="contained" onClick={() => (setData(id, name, description, user_id, category_id, priority))} href="/edittask"><EditIcon /></Button>
+          <Link to={`/tasks/${id}/edit`}><Button variant={"contained"}><EditIcon /></Button></Link>
           <Button variant="contained" onClick={handleOpenClick}><DeleteForeverIcon/></Button>
         </Box>
         <Dialog onClose={handleClose} open={open}>

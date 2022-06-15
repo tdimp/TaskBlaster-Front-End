@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -16,16 +16,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const theme = createTheme();
 const url = "http://localhost:9292"
 
-export default function NewUserForm() {
+export default function NewUserForm( { users }) {
 
-  useEffect(() => {
-    fetch(`${url}/users`)
-      .then((r) => r.json())
-      .then(setUsers)
-  }, [])
-
-  const [users, setUsers] = useState([])
-  const [currentUser, setCurrentUser] = useState("")
+  const [currentUser, setCurrentUser] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
