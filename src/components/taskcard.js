@@ -82,6 +82,7 @@ export default function TaskCard({
           display: 'flex',
           justifyContent: 'space-between',
         }}>
+          <Link to={`/tasks/${id}/edit`}><Button><EditIcon /></Button></Link>
           <Button variant="contained" onClick={() => (setData(id, name, description, user_id, category_id, priority))} href="/edittask"><EditIcon /></Button>
           <Button variant="contained" onClick={handleOpenClick}><DeleteForeverIcon/></Button>
         </Box>
