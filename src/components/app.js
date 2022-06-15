@@ -8,6 +8,11 @@ import TaskPage from './taskpage';
 import EditTaskForm from "./edittaskform";
 
 export default function App() {
+
+  // fetch Users and Tasks here, pass as props to TaskPage, NewUserForm, NewTaskForm, EditTaskForm
+  // look up how to pass props to Route
+  // advanced hooks - Phase 2 - React Context
+
   return (
     <div>
       <BrowserRouter>
@@ -17,7 +22,8 @@ export default function App() {
           <Route exact path="/newtaskform" element={<NewTaskForm />} />
           <Route exact path="/newuserform" element={<NewUserForm />} />
           <Route exact path="/tasks" element={<TaskPage />} />
-          <Route exact path="edittask" element={<EditTaskForm />} />
+          <Route exact path="/edittask" element={<EditTaskForm />} />
+          <Route path="/tasks/:id/edit" element={<EditTaskForm />} />
         </Routes>
       </BrowserRouter>
     </div>
