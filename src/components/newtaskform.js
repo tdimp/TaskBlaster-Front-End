@@ -95,6 +95,7 @@ export default function NewTaskForm() {
             onChange={(e) => setTaskUser(e.target.value)}
             defaultValue={1}
           >
+            <option value={"User"}>(Select User)</option>
             {users.map((user) => 
             <option key={user.id} value={user.id}>{user.name}</option>)}
           </NativeSelect>
