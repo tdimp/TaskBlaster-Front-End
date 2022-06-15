@@ -20,10 +20,10 @@ function NavBar() {
         href="/tasks"
       > Tasks </Button>
       <Button
-        href="/newtaskform"
+        href="/tasks/new"
       > New Task </Button>
       <Button
-        href="/newuserform"
+        href="/users/new"
       > New User </Button>
     </Box>
   )
