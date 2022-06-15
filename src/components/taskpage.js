@@ -26,7 +26,7 @@ export default function TaskPage() {
   return (
     <Container>
       <h1>Tasks</h1>
-      <Button variant='contained' href="/newtaskform">Add New Task</Button>
+      <Button variant='contained' href="/tasks/new">Add New Task</Button>
       <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
         {tasks.map((task) => (
           <Grid item xs={5} key={task.id}> 
