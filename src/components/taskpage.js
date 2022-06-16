@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import TaskCard from './taskcard';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
@@ -6,21 +6,13 @@ import Button from '@mui/material/Button';
 
 
 
-export default function TaskPage() {
+export default function TaskPage({ tasks, users, url }) {
 
-  const url = 'http://localhost:9292'
-
-  useEffect(() => {
-    fetch(`${url}/tasks`)
-      .then((r) => r.json())
-      .then(setTasks)
-  }, []);
-
-  const [tasks, setTasks] = useState([]);
+  const [displayedTasks, setDisplayedTasks] = useState(tasks)
 
   function handleDelete(id) {
     const filteredTasks = tasks.filter((task) => task.id !== id)
-    setTasks(filteredTasks)
+    setDisplayedTasks(filteredTasks)
   }
   
   return (
@@ -35,6 +27,8 @@ export default function TaskPage() {
               task={task}
               isComplete={task.is_complete}
               handleDelete={handleDelete}
+              users={users}
+              url={url}
             />
           </Grid>
         ))}       

@@ -36,7 +36,7 @@ export default function App() {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/tasks/new" element={<NewTaskForm users={users} /> } />
           <Route exact path="/users/new" element={<NewUserForm users={users} />} />
-          <Route exact path="/tasks" element={<TaskPage tasks={tasks} />}  />
+          <Route exact path="/tasks" element={<TaskPage tasks={tasks} users={users} />}  />
           <Route path="/tasks/:id/edit" element={<EditTaskForm tasks={tasks} users={users} url={url} />} />
         </Routes>
       </BrowserRouter>

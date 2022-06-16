@@ -21,13 +21,26 @@ export default function TaskCard({
     category_id,
     priority
   },
-  handleDelete
+  users,
+  handleDelete,
+  url
 }) {
 
   const [isComplete, setIsComplete] = useState(is_complete)
   const [open, setOpen] = useState(false)
 
-  const url = 'http://localhost:9292'
+  let taskUser = users.find(u => u.id == user_id);
+  let categories = {
+    1: "Home",
+    2: "Work",
+    3: "Personal"
+  }
+
+  let priorities = {
+    1: "Low",
+    2: "Medium",
+    3: "High"
+  }
 
   function handleCompleteToggle() {
     fetch(`${url}/tasks/${id}`, {
@@ -84,8 +97,10 @@ export default function TaskCard({
             <Button variant="contained" onClick={handleDeleteClick}>Yes</Button>
           </DialogActions>
         </Dialog>
-        <h1>{name}</h1>
+        <h1>{name}, </h1>
         <h3>{description}</h3>
+        <h3>Assigned to: {taskUser.name}</h3>
+        <h3>Category: {categories[`${category_id}`]} | Priority: {priorities[priority]} </h3>
         <Button variant="contained" onClick={handleCompleteToggle}>{isComplete? "Mark Incomplete" : "Complete!"}</Button>
       </Box>
     </Container>
