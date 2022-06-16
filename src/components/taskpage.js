@@ -21,7 +21,7 @@ export default function TaskPage({ tasks, users, url }) {
   }
 
   function filterTasksByUser(id) {
-    if (id == "All") {
+    if (isNaN(id)) {
       setDisplayedTasks(tasks)
     } else {
       const filteredTasks = tasks.filter((task) => task.user_id == id)
@@ -33,14 +33,14 @@ export default function TaskPage({ tasks, users, url }) {
     <Container>
       <h1>Tasks</h1>
       <Button variant='contained' href="/tasks/new">Add New Task</Button>
-      <Box onSubmit={filterTasksByUser}>
+      <Box>
         <FormControl>
             <InputLabel variant="standard" htmlFor="uncontrolled-native">
               User
             </InputLabel>
             <NativeSelect
+              defaultValue={"All"}
               onChange={(e) => filterTasksByUser(e.target.value)}
-              defaultValue={1}
             >
               <option value={"All"}>All</option>
               {users.map((user) => 
