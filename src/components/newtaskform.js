@@ -43,7 +43,7 @@ export default function NewTaskForm({ users, url }) {
         else {
           return setTimeout(() => {
             navigate('/tasks')
-          }, 500
+          }, 800
       )}
         })
   }
@@ -116,9 +116,9 @@ export default function NewTaskForm({ users, url }) {
             defaultValue={1}
             onChange={(e) => setTaskPriority(e.target.value)}
           >
-            <option value={1}>Low</option>
-            <option value={2}>Medium</option>
-            <option value={3}>High</option>
+            <option value={"Low"}>Low</option>
+            <option value={"Medium"}>Medium</option>
+            <option value={"High"}>High</option>
           </NativeSelect>
         </FormControl>
 

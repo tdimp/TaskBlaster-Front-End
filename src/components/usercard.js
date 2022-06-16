@@ -9,47 +9,21 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import EditIcon from '@mui/icons-material/Edit';
 import { Link } from 'react-router-dom'
 
-export default function TaskCard({
-  task: {
+export default function UserCard({
+  user: {
     id,
-    name,
-    description,
-    is_complete,
-    deadline,
-    user_id,
-    category_id,
-    priority
+    name
   },
-  users,
   handleDelete,
-  url
+  url,
+  tasks
 }) {
 
-  const [isComplete, setIsComplete] = useState(is_complete)
   const [open, setOpen] = useState(false)
 
-  let taskUser = users.find(u => u.id == user_id);
-  let categories = {
-    1: "Home",
-    2: "Work",
-    3: "Personal"
-  }
-
-  function handleCompleteToggle() {
-    fetch(`${url}/tasks/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        task: {
-          is_complete: !isComplete
-        }
-      }),
-    })
-      .then((r) => r.json())
-      .then((newComplete) => setIsComplete(newComplete.is_complete))
-  }
+  const userTasks = tasks.filter((task) => task.user_id == id)
+  const testArray = ["Test", "Testing", "Testering"]
+  const categories = {1: "Home", 2: "Work", 3: "Personal"}
 
   function handleOpenClick() {
     setOpen(true);
@@ -60,7 +34,8 @@ export default function TaskCard({
   }
 
   function handleDeleteClick() {
-    fetch(`${url}/tasks/${id}`, {
+    console.log("click")
+    fetch(`http://localhost:9292/users/${id}`, {
       method: "DELETE",
     });
     handleDelete(id)
@@ -80,21 +55,18 @@ export default function TaskCard({
           display: 'flex',
           justifyContent: 'space-between',
         }}>
-          <Link to={`/tasks/${id}/edit`}><Button variant={"contained"}><EditIcon /></Button></Link>
+          <Link to={`/users/${id}/edit`}><Button variant={"contained"}><EditIcon /></Button></Link>
           <Button variant="contained" onClick={handleOpenClick}><DeleteForeverIcon/></Button>
         </Box>
         <Dialog onClose={handleClose} open={open}>
-          <DialogTitle>Delete Task?</DialogTitle>
+          <DialogTitle>Delete User?</DialogTitle>
           <DialogActions>
             <Button onClick={handleClose}>No</Button>
             <Button variant="contained" onClick={handleDeleteClick}>Yes</Button>
           </DialogActions>
         </Dialog>
         <h1>{name}</h1>
-        <h3>{description}</h3>
-        <h3>Assigned to: {taskUser.name}</h3>
-        <h3>Category: {categories[`${category_id}`]} | Priority: {priority} </h3>
-        <Button variant="contained" onClick={handleCompleteToggle}>{isComplete? "Mark Incomplete" : "Complete!"}</Button>
+        <ul>{tasks.filter((task) => task.user_id == id).map((t) => <li key={t.id}>{t.name} | {t.description} | {categories[t.category_id]} | {t.priority} </li>)}</ul>
       </Box>
     </Container>
   )

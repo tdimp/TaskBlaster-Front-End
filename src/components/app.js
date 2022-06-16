@@ -41,7 +41,7 @@ export default function App() {
           <Route exact path="/tasks" element={<TaskPage tasks={tasks} users={users} url={url} />}  />
           <Route path="/tasks/:id/edit" element={<EditTaskForm tasks={tasks} users={users} url={url} />} />
           <Route path="/users" element={<UserPage users={users} tasks={tasks}></UserPage>} />
-          <Route path="/users/:id/tasks" element={<UserTasks users={users} tasks={tasks}></UserTasks>} />
+          <Route path="/users/:id/tasks" element={<UserTasks users={users} tasks={tasks} url={url}></UserTasks>} />
         </Routes>
       </BrowserRouter>
     </div>

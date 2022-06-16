@@ -48,7 +48,7 @@ export default function EditTaskForm({ tasks, users, url }) {
       })
       .then(setTimeout(() => {
         navigate('/tasks')
-      }, 500))
+      }, 800))
   }
 
   return (
@@ -118,9 +118,9 @@ export default function EditTaskForm({ tasks, users, url }) {
             value={taskPriority}
             onChange={(e) => setTaskPriority(e.target.value)}
           >
-            <option value={1}>Low</option>
-            <option value={2}>Medium</option>
-            <option value={3}>High</option>
+            <option value={"Low"}>Low</option>
+            <option value={"Medium"}>Medium</option>
+            <option value={"High"}>High</option>
           </NativeSelect>
         </FormControl>
 
