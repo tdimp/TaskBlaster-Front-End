@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { NavLink } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 
@@ -19,6 +18,9 @@ function NavBar() {
       <Button
         href="/tasks"
       > Tasks </Button>
+      <Button
+        href="/users"
+      > Users </Button>
       <Button
         href="/tasks/new"
       > New Task </Button>
