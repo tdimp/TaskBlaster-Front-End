@@ -6,6 +6,7 @@ import NewTaskForm from "./newtaskform";
 import NewUserForm from './newuserform';
 import TaskPage from './taskpage';
 import EditTaskForm from "./edittaskform";
+import UserPage from "./userpage";
 
 export default function App() {
 
@@ -38,6 +39,7 @@ export default function App() {
           <Route exact path="/users/new" element={<NewUserForm users={users} url={url} />} />
           <Route exact path="/tasks" element={<TaskPage tasks={tasks} users={users} url={url} />}  />
           <Route path="/tasks/:id/edit" element={<EditTaskForm tasks={tasks} users={users} url={url} />} />
+          <Route path="/users" element={<UserPage users={users} tasks={tasks}></UserPage>} />
         </Routes>
       </BrowserRouter>
     </div>
