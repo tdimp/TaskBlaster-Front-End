@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button'
@@ -7,15 +8,14 @@ import FormControl from '@mui/material/FormControl';
 import NativeSelect from '@mui/material/NativeSelect';
 import Container from '@mui/material/Container';
 
-export default function NewTaskForm({ users }) {
+export default function NewTaskForm({ users, url }) {
+  const navigate = useNavigate();
 
   const [taskCategory, setTaskCategory] = useState("1");
   const [taskName, setTaskName] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
   const [taskPriority, setTaskPriority] = useState("Low");
   const [taskUser, setTaskUser] = useState("");
-
-  const url = "http://localhost:9292"
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -27,8 +27,6 @@ export default function NewTaskForm({ users }) {
       priority: taskPriority,
       user_id: taskUser,
     }};
-
-    console.log(submittedTask)
 
     fetch(`${url}/tasks`, {
       method: "POST",
@@ -42,10 +40,14 @@ export default function NewTaskForm({ users }) {
         if (newTask.errors) {
           return alert(newTask.errors)
         }
-        console.log(newTask)
-      })
+        else {
+          return setTimeout(() => {
+            navigate('/tasks')
+          }, 500
+      )}
+        })
   }
-  console.log(users)
+  
   return (
     <Container component="main" maxWidth="xs">
       <Box

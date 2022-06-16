@@ -7,7 +7,6 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import EditIcon from '@mui/icons-material/Edit';
-import EditTaskForm from './edittaskform';
 import { Link } from 'react-router-dom'
 
 export default function TaskCard({
@@ -97,7 +96,7 @@ export default function TaskCard({
             <Button variant="contained" onClick={handleDeleteClick}>Yes</Button>
           </DialogActions>
         </Dialog>
-        <h1>{name}, </h1>
+        <h1>{name}</h1>
         <h3>{description}</h3>
         <h3>Assigned to: {taskUser.name}</h3>
         <h3>Category: {categories[`${category_id}`]} | Priority: {priorities[priority]} </h3>
