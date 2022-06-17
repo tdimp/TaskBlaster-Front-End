@@ -12,8 +12,9 @@ import Box from '@mui/material/Box';
 
 export default function TaskPage({ tasks, users, url }) {
 
-  const [displayedTasks, setDisplayedTasks] = useState([])
-  useEffect(() => setDisplayedTasks(tasks), [tasks]);
+  const [displayedTasks, setDisplayedTasks] = useState(tasks)
+  const [taskUser, setTaskUser] = useState(users)
+  //useEffect(() => setDisplayedTasks(tasks), [tasks]);
 
   function handleDelete(id) {
     const filteredTasks = tasks.filter((task) => task.id !== id)
@@ -21,12 +22,18 @@ export default function TaskPage({ tasks, users, url }) {
   }
 
   function filterTasksByUser(id) {
-    if (id === "All") {
-      return true;
-    } else {
-      const filteredTasks = tasks.filter((task) => task.user_id == id)
+    const filteredTasks = tasks.filter((task) => task.user_id == id)
       setDisplayedTasks(filteredTasks);
-    }      
+  }
+
+  function handleFilterChange(value) {
+    if (value === "All") {
+      setTaskUser(users);
+    } else {
+      setTaskUser(value);
+    }
+    filterTasksByUser(value);
+    console.log(taskUser)
   }
   
   return (
@@ -40,7 +47,7 @@ export default function TaskPage({ tasks, users, url }) {
             </InputLabel>
             <NativeSelect
               defaultValue={"All"}
-              onChange={(e) => filterTasksByUser(e.target.value)}
+              onChange={(e) => handleFilterChange(e.target.value)}
             >
               <option value={"All"}>All</option>
               {users.map((user) => 
