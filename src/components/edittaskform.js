@@ -8,7 +8,7 @@ import FormControl from '@mui/material/FormControl';
 import NativeSelect from '@mui/material/NativeSelect';
 import Container from '@mui/material/Container';
 
-export default function EditTaskForm({ tasks, users, url }) {
+export default function EditTaskForm({ tasks, users, url, handleEditTask }) {
 
   const navigate = useNavigate();
 
@@ -44,11 +44,11 @@ export default function EditTaskForm({ tasks, users, url }) {
       .then((newTask) => {
         if (newTask.errors) {
           return alert(newTask.errors)
+        } else {
+          handleEditTask(newTask)
+          navigate('/tasks');
         }
-      })
-      .then(setTimeout(() => {
-        navigate('/tasks')
-      }, 800))
+      });
   }
 
   return (

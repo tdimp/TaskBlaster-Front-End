@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,6 +14,7 @@ const theme = createTheme();
 export default function NewUserForm( { users, url, handleAddUser }) {
 
   const [currentUser, setCurrentUser] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,10 +34,11 @@ export default function NewUserForm( { users, url, handleAddUser }) {
       .then((user) => {
         if (user.errors) {
           return alert(user.errors)
+        } else {
+          handleAddUser(user);
+          navigate('/users')
         }
-        console.log(user)
       });
-    handleAddUser(newUser)
   };
 
   return (

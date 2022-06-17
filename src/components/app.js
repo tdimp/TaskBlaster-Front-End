@@ -45,7 +45,23 @@ export default function App() {
   }
 
   function handleAddUser(newUser) {
-    setUsers([...users, newUser])
+    setUsers([...users, newUser]);
+  }
+
+  function handleAddTask(newTask) {
+    setTasks([...tasks, newTask]);
+  }
+
+  function handleEditTask(editedTask) {
+    const taskIndex = tasks.findIndex((task) => task.id === editedTask.id);
+    const newTasks = tasks.map((task) => {
+      if (task.id === editedTask.id) {
+        return editedTask
+      } else {
+        return task
+      }
+    });
+    setTasks(newTasks);
   }
 
   return (
@@ -54,10 +70,10 @@ export default function App() {
         <NavBar />
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route exact path="/tasks/new" element={<NewTaskForm users={users} url={url} /> } />
+          <Route exact path="/tasks/new" element={<NewTaskForm users={users} url={url} handleAddTask={handleAddTask} /> } />
           <Route exact path="/users/new" element={<NewUserForm users={users} url={url} handleAddUser={handleAddUser} />} />
           <Route exact path="/tasks" element={<TaskPage tasks={tasks} users={users} url={url} handleFilter={handleTaskFilter} />}  />
-          <Route path="/tasks/:id/edit" element={<EditTaskForm tasks={tasks} users={users} url={url} />} />
+          <Route path="/tasks/:id/edit" element={<EditTaskForm tasks={tasks} users={users} url={url} handleEditTask={handleEditTask} />} />
           <Route path="/users" element={<UserPage users={users} tasks={tasks}></UserPage>} />
           <Route path="/users/:id/tasks" element={<UserTasks users={users} tasks={tasks} url={url}></UserTasks>} />
         </Routes>
