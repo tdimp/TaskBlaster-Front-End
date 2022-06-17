@@ -44,6 +44,10 @@ export default function App() {
     console.log(user)
   }
 
+  function handleAddUser(newUser) {
+    setUsers([...users, newUser])
+  }
+
   return (
     <div>
       <BrowserRouter>
@@ -51,7 +55,7 @@ export default function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/tasks/new" element={<NewTaskForm users={users} url={url} /> } />
-          <Route exact path="/users/new" element={<NewUserForm users={users} url={url} />} />
+          <Route exact path="/users/new" element={<NewUserForm users={users} url={url} handleAddUser={handleAddUser} />} />
           <Route exact path="/tasks" element={<TaskPage tasks={tasks} users={users} url={url} handleFilter={handleTaskFilter} />}  />
           <Route path="/tasks/:id/edit" element={<EditTaskForm tasks={tasks} users={users} url={url} />} />
           <Route path="/users" element={<UserPage users={users} tasks={tasks}></UserPage>} />

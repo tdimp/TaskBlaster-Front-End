@@ -10,7 +10,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme();
 
-export default function NewUserForm( { users, url }) {
+export default function NewUserForm( { users, url, handleAddUser }) {
 
   const [currentUser, setCurrentUser] = useState("");
 
@@ -35,7 +35,7 @@ export default function NewUserForm( { users, url }) {
         }
         console.log(user)
       });
-    
+    handleAddUser(newUser)
   };
 
   return (
