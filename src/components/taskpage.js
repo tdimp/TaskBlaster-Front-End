@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TaskCard from './taskcard';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
@@ -12,8 +12,8 @@ import Box from '@mui/material/Box';
 
 export default function TaskPage({ tasks, users, url }) {
 
-  const [displayedTasks, setDisplayedTasks] = useState(tasks)
-  const [taskUser, setTaskUser] = useState("");
+  const [displayedTasks, setDisplayedTasks] = useState([])
+  useEffect(() => setDisplayedTasks(tasks), [tasks]);
 
   function handleDelete(id) {
     const filteredTasks = tasks.filter((task) => task.id !== id)
@@ -21,8 +21,8 @@ export default function TaskPage({ tasks, users, url }) {
   }
 
   function filterTasksByUser(id) {
-    if (isNaN(id)) {
-      setDisplayedTasks(tasks)
+    if (id === "All") {
+      return true;
     } else {
       const filteredTasks = tasks.filter((task) => task.user_id == id)
       setDisplayedTasks(filteredTasks);
