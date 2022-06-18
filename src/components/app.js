@@ -7,7 +7,6 @@ import NewUserForm from './newuserform';
 import TaskPage from './taskpage';
 import EditTaskForm from "./edittaskform";
 import UserPage from "./userpage";
-import UserTasks from "./usertasks";
 
 export default function App() {
 
@@ -75,7 +74,6 @@ export default function App() {
           <Route exact path="/tasks" element={<TaskPage tasks={displayedTasks} users={users} url={url} handleEditTask={handleEditTask} handleFilter={handleTaskFilter} />}  />
           <Route path="/tasks/:id/edit" element={<EditTaskForm tasks={tasks} users={users} url={url} handleEditTask={handleEditTask} handleDeleteTask={handleDeleteTask} />} />
           <Route path="/users" element={<UserPage users={users} tasks={tasks} url={url} handleEditTask={handleEditTask} ></UserPage>} />
-          <Route path="/users/:id/tasks" element={<UserTasks users={users} tasks={tasks} url={url}></UserTasks>} />
         </Routes>
       </BrowserRouter>
     </div>
