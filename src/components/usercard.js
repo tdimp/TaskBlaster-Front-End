@@ -3,11 +3,7 @@ import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import EditIcon from '@mui/icons-material/Edit';
-import { Link } from 'react-router-dom'
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogTitle from '@mui/material/DialogTitle';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { Link } from 'react-router-dom';
 
 
 export default function UserCard({
@@ -19,17 +15,9 @@ export default function UserCard({
   url,
   tasks
 }) {
-  const [open, setOpen] = useState(false)
+
   const userTasks = tasks.filter((task) => task.user_id == id)
   const categories = {1: "Home", 2: "Work", 3: "Personal"}
-
-  function handleOpenClick() {
-    setOpen(true);
-  }
-
-  function handleClose() {
-    setOpen(false);
-  }
 
   function handleDeleteClick(id) {
     fetch(`${url}/tasks/${id}`, {
@@ -38,7 +26,6 @@ export default function UserCard({
     //handleDelete(id)
   }
 
-  
   return (
     <Container>
       <Box
@@ -61,7 +48,7 @@ export default function UserCard({
             <Button variant="contained" sx={{margin: 1}}><EditIcon /></Button>
           </Link>      
         </h2>
-          <div>{t.description? t.description : "No desc"} | {categories[t.category_id]} | {t.priority} </div>
+          <div>{t.description? t.description : "No desc"} | {categories[t.category_id]} | {t.priority} | {t.is_complete? "Complete" : "Incomplete" }</div>
           </li>)}
         </ul>
       </Box>

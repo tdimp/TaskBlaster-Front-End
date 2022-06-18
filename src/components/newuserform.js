@@ -15,7 +15,7 @@ export default function NewUserForm( { users, url, handleAddUser }) {
 
   const [currentUser, setCurrentUser] = useState("");
   const navigate = useNavigate();
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
 

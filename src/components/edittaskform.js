@@ -11,8 +11,8 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
 
-export default function EditTaskForm({ tasks, users, url, handleEditTask }) {
-
+export default function EditTaskForm({ tasks, users, url, handleEditTask, handleDeleteTask }) {
+  
   const navigate = useNavigate();
 
   const { id } = useParams()
@@ -67,6 +67,7 @@ export default function EditTaskForm({ tasks, users, url, handleEditTask }) {
     fetch(`${url}/tasks/${id}`, {
       method: "DELETE",
     });
+    handleDeleteTask(id)
     navigate('/users')
   }
 

@@ -27,10 +27,10 @@ export default function App() {
     fetch(`${url}/tasks`)
       .then((r) => r.json())
       .then((data) => setTasks(data))
-  }, [tasks]);
+  }, []);
 
   // advanced hooks - Phase 2 - React Context
-
+  
   function handleTaskFilter(id) {
     
     if (id === "All") {
@@ -61,6 +61,11 @@ export default function App() {
     setTasks(newTasks);
   }
 
+  function handleDeleteTask(id) {
+    const newTasks = tasks.filter((task) => task.id != id)
+    setTasks(newTasks);
+  }
+
   return (
     <div>
       <BrowserRouter>
@@ -70,7 +75,7 @@ export default function App() {
           <Route exact path="/tasks/new" element={<NewTaskForm users={users} url={url} handleAddTask={handleAddTask} /> } />
           <Route exact path="/users/new" element={<NewUserForm users={users} url={url} handleAddUser={handleAddUser} />} />
           <Route exact path="/tasks" element={<TaskPage tasks={tasks} users={users} url={url} handleFilter={handleTaskFilter} />}  />
-          <Route path="/tasks/:id/edit" element={<EditTaskForm tasks={tasks} users={users} url={url} handleEditTask={handleEditTask} />} />
+          <Route path="/tasks/:id/edit" element={<EditTaskForm tasks={tasks} users={users} url={url} handleEditTask={handleEditTask} handleDeleteTask={handleDeleteTask} />} />
           <Route path="/users" element={<UserPage users={users} tasks={tasks}></UserPage>} />
           <Route path="/users/:id/tasks" element={<UserTasks users={users} tasks={tasks} url={url}></UserTasks>} />
         </Routes>

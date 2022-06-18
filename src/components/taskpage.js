@@ -10,36 +10,23 @@ import Box from '@mui/material/Box';
 
 
 
-export default function TaskPage({ tasks, users, url, handleFilter }) {
-  console.log("check")
+export default function TaskPage({ tasks, users, url }) {
 
-  const [displayedTasks, setDisplayedTasks] = useState([])
-  //useEffect(() => setDisplayedTasks(tasks), [])
-
+  const [displayedTasks, setDisplayedTasks] = useState(tasks)
   if (displayedTasks != tasks) {
     setDisplayedTasks(tasks)
   }
-
+  
   function handleDelete(id) {
     const filteredTasks = tasks.filter((task) => task.id !== id)
     setDisplayedTasks(filteredTasks)
   }
 
-  //function handleFilterTasks(id) {
-  //  if (id === "All" || false) {
-  //    setDisplayedTasks(tasks)
-  //  } else {
-  //    const filteredTasks = tasks.filter((task) => task.user_id == id) 
-  //    setDisplayedTasks(filteredTasks)
-  //  }
-  //}
-
-
   return (
     <Container>
       <h1>Tasks</h1>
       <Button variant='contained' href="/tasks/new">Add New Task</Button>
-      <Box>
+      {/*} <Box>
         <FormControl>
             <InputLabel variant="standard" htmlFor="uncontrolled-native">
               User
@@ -53,7 +40,7 @@ export default function TaskPage({ tasks, users, url, handleFilter }) {
               <option key={user.id} value={user.id}>{user.name}</option>)}
             </NativeSelect>
           </FormControl>
-      </Box>
+              </Box> */}
       <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
         {displayedTasks.map((task) => (
           <Grid item xs={5} key={task.id}> 
