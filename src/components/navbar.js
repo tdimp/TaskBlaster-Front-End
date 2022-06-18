@@ -16,6 +16,9 @@ function NavBar() {
         href='/'
       > Home </Button>
       <Button
+        href="/tasks"
+      > Tasks </Button>
+      <Button
         href="/users"
       > Users </Button>
       <Button

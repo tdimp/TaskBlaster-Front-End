@@ -18,11 +18,9 @@ export default function TaskCard({
     priority
   },
   users,
-  url
+  url,
+  handleComplete
 }) {
-
-  const [isComplete, setIsComplete] = useState(is_complete)
-
 
   let taskUser = users.find(u => u.id == user_id);
   let categories = {
@@ -39,12 +37,12 @@ export default function TaskCard({
       },
       body: JSON.stringify({
         task: {
-          is_complete: !isComplete
+          is_complete: !is_complete
         }
       }),
     })
       .then((r) => r.json())
-      .then((newComplete) => setIsComplete(newComplete.is_complete))
+      .then((newComplete) => handleComplete(newComplete))
   }
   
   return (
@@ -68,7 +66,7 @@ export default function TaskCard({
         <h3>{description}</h3>
         <h3>Assigned to: {taskUser.name}</h3>
         <h3>Category: {categories[`${category_id}`]} | Priority: {priority} </h3>
-        <Button variant="contained" onClick={handleCompleteToggle}>{isComplete? "Mark Incomplete" : "Complete!"}</Button>
+        <Button variant="contained" onClick={handleCompleteToggle}>{is_complete? "Mark Incomplete" : "Complete!"}</Button>
       </Box>
     </Container>
   )

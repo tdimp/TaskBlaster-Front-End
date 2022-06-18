@@ -15,32 +15,30 @@ export default function App() {
   // fetch Users and Tasks here, pass as props to TaskPage, NewUserForm, NewTaskForm, EditTaskForm
   const [users, setUsers] = useState([]);
   const [tasks, setTasks] = useState([]);
-  const [displayedTasks, setDisplayedTasks] = useState([]);
-
+  const [user, setUser] = useState("");
+  
   useEffect(() => {
     fetch(`${url}/users`)
       .then((r) => r.json())
-      .then((data) => setUsers(data))
+      .then((data) => setUsers([...data]))
   }, []);
 
   useEffect(() => {
     fetch(`${url}/tasks`)
       .then((r) => r.json())
-      .then((data) => setTasks(data))
+      .then((data) => setTasks([...data]))
   }, []);
 
   // advanced hooks - Phase 2 - React Context
   
-  function handleTaskFilter(id) {
-    
-    if (id === "All") {
-      setTasks(tasks)
-    } else {
-      const filteredTasks = tasks.filter((task) => task.user_id == id)
-      console.log(filteredTasks)
-      setTasks(filteredTasks)
-    }
+  const handleTaskFilter = (e) => {
+    e.preventDefault();
+    setUser(e.target.value === "All" ? "" : e.target.value)
   }
+
+  let displayedTasks = user.length
+    ? tasks.filter((task) => task.user_id == user)
+    : tasks;
 
   function handleAddUser(newUser) {
     setUsers([...users, newUser]);
@@ -74,9 +72,9 @@ export default function App() {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/tasks/new" element={<NewTaskForm users={users} url={url} handleAddTask={handleAddTask} /> } />
           <Route exact path="/users/new" element={<NewUserForm users={users} url={url} handleAddUser={handleAddUser} />} />
-          <Route exact path="/tasks" element={<TaskPage tasks={tasks} users={users} url={url} handleFilter={handleTaskFilter} />}  />
+          <Route exact path="/tasks" element={<TaskPage tasks={displayedTasks} users={users} url={url} handleEditTask={handleEditTask} handleFilter={handleTaskFilter} />}  />
           <Route path="/tasks/:id/edit" element={<EditTaskForm tasks={tasks} users={users} url={url} handleEditTask={handleEditTask} handleDeleteTask={handleDeleteTask} />} />
-          <Route path="/users" element={<UserPage users={users} tasks={tasks}></UserPage>} />
+          <Route path="/users" element={<UserPage users={users} tasks={tasks} url={url} handleEditTask={handleEditTask} ></UserPage>} />
           <Route path="/users/:id/tasks" element={<UserTasks users={users} tasks={tasks} url={url}></UserTasks>} />
         </Routes>
       </BrowserRouter>

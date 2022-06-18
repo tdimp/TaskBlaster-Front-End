@@ -7,7 +7,7 @@ import Grid from '@mui/material/Grid';
 
 
 
-export default function UserPage( { users, tasks, url } ) {
+export default function UserPage( { users, tasks, url, handleEditTask } ) {
 
   const [displayedTasks, setDisplayedTasks] = useState(tasks);
 
@@ -29,6 +29,7 @@ export default function UserPage( { users, tasks, url } ) {
               key={user.id}
               user={user}
               handleDelete={handleDeleteClick}
+              handleComplete={handleEditTask}
               url={url}
               tasks={tasks}
             />
