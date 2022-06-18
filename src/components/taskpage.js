@@ -11,14 +11,27 @@ import Box from '@mui/material/Box';
 
 
 export default function TaskPage({ tasks, users, url, handleFilter }) {
+  
 
-  const [displayedTasks, setDisplayedTasks] = useState(tasks)
-  const [taskUser, setTaskUser] = useState("All")
+  const [displayedTasks, setDisplayedTasks] = useState([])
+  //const [taskUser, setTaskUser] = useState("")
+  console.log(tasks)
 
   function handleDelete(id) {
     const filteredTasks = tasks.filter((task) => task.id !== id)
     setDisplayedTasks(filteredTasks)
   }
+
+  function handleFilterTasks(id) {
+    if (isNaN(id)) {
+      setDisplayedTasks(tasks);
+      console.log(displayedTasks)
+    } else {
+      const filteredTasks = tasks.filter((task) => task.user_id == id)
+      setDisplayedTasks(filteredTasks);
+    }
+  }
+
 
   return (
     <Container>
@@ -31,7 +44,7 @@ export default function TaskPage({ tasks, users, url, handleFilter }) {
             </InputLabel>
             <NativeSelect
               defaultValue={"All"}
-              onChange={(e) => handleFilter(e.target.value)}
+              onChange={(e) => handleFilterTasks(e.target.value)}
             >
               <option value={"All"}>All</option>
               {users.map((user) => 
@@ -40,7 +53,7 @@ export default function TaskPage({ tasks, users, url, handleFilter }) {
           </FormControl>
       </Box>
       <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-        {tasks.map((task) => (
+        {displayedTasks.map((task) => (
           <Grid item xs={5} key={task.id}> 
             <TaskCard
               key={task.id}

@@ -7,14 +7,14 @@ import Grid from '@mui/material/Grid';
 
 
 
-export default function UserPage( { users, tasks, handleDelete, url } ) {
+export default function UserPage( { users, tasks, url } ) {
 
-  const [displayedUsers, setDisplayedUsers] = useState(users);
+  const [displayedTasks, setDisplayedTasks] = useState(tasks);
 
 
   function handleDeleteClick(id) {
-    const filteredUsers = users.filter((user) => user.id != id)
-    setDisplayedUsers(filteredUsers);
+    const filteredTasks = tasks.filter((task) => task.id != id)
+    setDisplayedTasks(filteredTasks);
   }
 
   return (

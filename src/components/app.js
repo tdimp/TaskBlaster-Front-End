@@ -15,7 +15,7 @@ export default function App() {
   // fetch Users and Tasks here, pass as props to TaskPage, NewUserForm, NewTaskForm, EditTaskForm
   const [users, setUsers] = useState([]);
   const [tasks, setTasks] = useState([]);
-  const [user, setUser] = useState("All");
+  const [displayedTasks, setDisplayedTasks] = useState([]);
 
   useEffect(() => {
     fetch(`${url}/users`)
@@ -32,16 +32,14 @@ export default function App() {
   // advanced hooks - Phase 2 - React Context
 
   function handleTaskFilter(id) {
-    setUser(id)
-    const filteredTasks = tasks.filter((task) => task.user_id == user)
-    if (user === "All") {
+    
+    if (id === "All") {
       setTasks(tasks)
     } else {
+      const filteredTasks = tasks.filter((task) => task.user_id == id)
+      console.log(filteredTasks)
       setTasks(filteredTasks)
     }
-    
-    console.log(tasks)
-    console.log(user)
   }
 
   function handleAddUser(newUser) {
@@ -53,7 +51,6 @@ export default function App() {
   }
 
   function handleEditTask(editedTask) {
-    const taskIndex = tasks.findIndex((task) => task.id === editedTask.id);
     const newTasks = tasks.map((task) => {
       if (task.id === editedTask.id) {
         return editedTask

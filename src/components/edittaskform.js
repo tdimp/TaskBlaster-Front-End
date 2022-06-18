@@ -7,6 +7,12 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import NativeSelect from '@mui/material/NativeSelect';
 import Container from '@mui/material/Container';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogTitle from '@mui/material/DialogTitle';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import EditIcon from '@mui/icons-material/Edit';
+import { Link } from 'react-router-dom'
 
 export default function EditTaskForm({ tasks, users, url, handleEditTask }) {
 
@@ -21,6 +27,7 @@ export default function EditTaskForm({ tasks, users, url, handleEditTask }) {
   const [taskDescription, setTaskDescription] = useState(task.description);
   const [taskPriority, setTaskPriority] = useState(task.priority);
   const [taskUser, setTaskUser] = useState(task.user_id);
+  const [open, setOpen] = useState(false);
   
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -49,6 +56,21 @@ export default function EditTaskForm({ tasks, users, url, handleEditTask }) {
           navigate('/tasks');
         }
       });
+  }
+
+  function handleOpenClick() {
+    setOpen(true);
+  }
+
+  function handleClose() {
+    setOpen(false);
+  }
+
+  function handleDeleteClick() {
+    fetch(`${url}/tasks/${id}`, {
+      method: "DELETE",
+    });
+    navigate('/users')
   }
 
   return (
@@ -125,7 +147,15 @@ export default function EditTaskForm({ tasks, users, url, handleEditTask }) {
         </FormControl>
 
         <Button type="submit" variant="contained">Submit</Button>
-        <Button href="/tasks">Go to Tasks Page</Button>
+        <Button href="/users">Return to Users Page</Button>
+        <Button variant="contained" color="error" sx={{margin: 5}} onClick={handleOpenClick}>Delete</Button>
+        <Dialog onClose={handleClose} open={open}>
+          <DialogTitle>Delete Task?</DialogTitle>
+          <DialogActions>
+            <Button onClick={handleClose}>No</Button>
+            <Button variant="contained" onClick={handleDeleteClick}>Yes</Button>
+          </DialogActions>
+        </Dialog>
       </Box>
     </Container>
   )
