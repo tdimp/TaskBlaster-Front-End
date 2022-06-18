@@ -10,9 +10,6 @@ import Container from '@mui/material/Container';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import EditIcon from '@mui/icons-material/Edit';
-import { Link } from 'react-router-dom'
 
 export default function EditTaskForm({ tasks, users, url, handleEditTask }) {
 
@@ -53,7 +50,7 @@ export default function EditTaskForm({ tasks, users, url, handleEditTask }) {
           return alert(newTask.errors)
         } else {
           handleEditTask(newTask)
-          navigate('/tasks');
+          navigate('/users');
         }
       });
   }
@@ -104,7 +101,7 @@ export default function EditTaskForm({ tasks, users, url, handleEditTask }) {
           multiline
           maxRows={4}
           name="task-description"
-          value={taskDescription}
+          value={taskDescription? taskDescription : "Enter Description (optional)"}
           onChange={(e) => setTaskDescription(e.target.value)}
         />
         <FormControl>

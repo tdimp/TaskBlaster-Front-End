@@ -20,7 +20,8 @@ export default function UserPage( { users, tasks, url } ) {
   return (
     <Container>
       <h1>Users</h1>
-      <Button variant='contained' href="/users/new">Add New User</Button>
+      <Button variant='contained' href="/users/new">New User</Button>
+      <Button variant='contained' href='/tasks/new' sx={{margin: 1}}>New Task</Button>
       <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
         {users.map((user) => (
           <Grid item xs={5} key={user.id}> 

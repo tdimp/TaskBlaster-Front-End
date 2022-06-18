@@ -42,7 +42,7 @@ export default function NewTaskForm({ users, url, handleAddTask }) {
         }
         else {
           handleAddTask(newTask)
-          navigate('/tasks')
+          navigate('/users')
         }
         });
   }

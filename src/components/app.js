@@ -27,7 +27,7 @@ export default function App() {
     fetch(`${url}/tasks`)
       .then((r) => r.json())
       .then((data) => setTasks(data))
-  }, []);
+  }, [tasks]);
 
   // advanced hooks - Phase 2 - React Context
 
